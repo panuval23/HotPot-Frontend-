@@ -1,0 +1,19 @@
+.loginDiv {
+  width: 300px;
+  margin: 50px auto;
+  padding: 20px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #f9f9f9;
+}
+
+.loginDiv input {
+  width: 100%;
+  padding: 8px;
+  margin-top: 10px;
+}
+
+.loginDiv button {
+  margin-top: 15px;
+  padding: 8px 12px;
+}
