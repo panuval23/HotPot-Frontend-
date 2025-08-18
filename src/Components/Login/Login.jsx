@@ -1,70 +1,72 @@
 import { useState } from "react";
-import './Login.css';
-import {loginAPICall} from '../../Services/login.service';
-import {LoginModel} from '../../Models/login.model';
-import {LoginErrorModel} from '../../Models/loginerror.model';
-import { useNavigate } from "react-router-dom";
+import { LoginModel } from "../../Models/login.model";
+import { loginAPICall } from "../../Services/login.service";
+import { useNavigate, Link } from "react-router-dom";
+import "./Login.css";
 
-const Login = ()=>{
+export default function Login() {
+  const [user, setUser] = useState(new LoginModel());
+  const navigate = useNavigate();
 
-    const [user,setUser] = useState(new LoginModel());
-    const [errors,setErrors] = useState(new LoginErrorModel());
-    const navigate = useNavigate();
+  const changeUser = (e) => {
+    const { name, value } = e.target;
+    setUser((prev) => ({ ...prev, [name]: value }));
+  };
 
-    const changeUser=(eventArgs)=>{
-        const fieldName = eventArgs.target.name;
-        switch (fieldName) {
-            case "username":
-                if(eventArgs.target.value=="")
-                    setErrors(e=>({...errors,username:"Username cannot be empty"}));
-                else
-                {
-                    setUser(u=>({...u,username:eventArgs.target.value}))
-                    setErrors(e=>({...errors,username:""}));
-                }
-                break;
-            case "password":
-                setUser(u=>({...u,password:eventArgs.target.value}))
-                break;
-            default:
-                break;
-        }
-    }
-    const login=()=>{
-        if(errors.username.length>0 || errors.password.length>0)
-            return;
-        loginAPICall(user)
-        .then(result=>{
-            console.log(result.data)
-            sessionStorage.setItem("token",result.data.token);
-            sessionStorage.setItem("username",result.data.username)
-            alert("Login success");
-            navigate('/emp')
-        })
-        .catch(err=>{
-            console.log(err);
-            if(err.status === 401)
-             alert(err.response.data.errorMessage)
-        })
+  const login = () => {
+    if (!user.username || !user.password) {
+      alert("Please fill in both fields");
+      return;
     }
 
-    const cancel =()=>{
+    loginAPICall(user)
+      .then((res) => {
+        sessionStorage.setItem("token", res.data.token);
+        alert("Login successful");
+        navigate("/restaurants"); // change to your main page
+      })
+      .catch((err) => {
+        console.error(err);
+        alert("Invalid username or password");
+      });
+  };
 
-    }
-    return (
-        <section className="loginDiv">
-            <h1>Login!!</h1>
-            <label className="form-control">Username</label>
-            <input type="text" name="username" value={user.username} onChange={(e)=>changeUser(e)} className="form-control"/>
-            {
-                errors.username?.length >0 && (<span className="alert alert-danger">{errors.username}</span>)
-            }
-              <label className="form-control">Password</label>
-            <input type="password" name="password" value={user.password} onChange={(e)=>changeUser(e)} className="form-control"/>
-            <button className="button btn btn-success" onClick={login}>Login</button> 
-            <button className= "button btn btn-danger" onClick={cancel}>Cancel</button>
-        </section>
-    )
+  return (
+    <div className="login-container">
+      <div className="login-card">
+        <div className="logo">
+          <h2>HotPot</h2>
+        </div>
+
+        <h3 className="login-title">Login</h3>
+        <p className="login-subtitle">Welcome back! Please log in to continue.</p>
+
+        <div className="input-group">
+          <input
+            type="text"
+            name="username"
+            placeholder="Username"
+            onChange={changeUser}
+          />
+        </div>
+
+        <div className="input-group">
+          <input
+            type="password"
+            name="password"
+            placeholder="Password"
+            onChange={changeUser}
+          />
+        </div>
+
+        <button className="btn-login" onClick={login}>
+          Login
+        </button>
+
+        <div className="login-footer">
+          New to HotPot? <Link to="/register">Sign up</Link>
+        </div>
+      </div>
+    </div>
+  );
 }
-
-export default Login;
