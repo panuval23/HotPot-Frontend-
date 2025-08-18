@@ -23,7 +23,7 @@ export default function Login() {
       .then((res) => {
         sessionStorage.setItem("token", res.data.token);
         alert("Login successful");
-        navigate("/restaurants"); // change to your main page
+        navigate("/restaurants"); 
       })
       .catch((err) => {
         console.error(err);
