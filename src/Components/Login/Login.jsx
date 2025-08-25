@@ -1,12 +1,22 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { LoginModel } from "../../Models/login.model";
 import { loginAPICall } from "../../Services/login.service";
 import { useNavigate, Link } from "react-router-dom";
+import { useDispatch } from "react-redux";
+import { setAuth } from "../../store/authSlice";
 import "./Login.css";
 
 export default function Login() {
   const [user, setUser] = useState(new LoginModel());
   const navigate = useNavigate();
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      navigate("/"); 
+    }
+  }, [navigate]);
 
   const changeUser = (e) => {
     const { name, value } = e.target;
@@ -21,9 +31,23 @@ export default function Login() {
 
     loginAPICall(user)
       .then((res) => {
-        sessionStorage.setItem("token", res.data.token);
+        dispatch(
+          setAuth({
+            token: res.data.token,
+            role: res.data.role, 
+            username: res.data.username,
+            
+          })
+
+
+        );
+
         alert("Login successful");
-        navigate("/restaurants"); 
+        if (res.data.role?.toLowerCase() === "admin") {
+          navigate("/admin");
+        } else {
+          navigate("/");
+        }
       })
       .catch((err) => {
         console.error(err);
@@ -46,6 +70,7 @@ export default function Login() {
             type="text"
             name="username"
             placeholder="Username"
+            value={user.username}
             onChange={changeUser}
           />
         </div>
@@ -55,6 +80,7 @@ export default function Login() {
             type="password"
             name="password"
             placeholder="Password"
+            value={user.password}
             onChange={changeUser}
           />
         </div>

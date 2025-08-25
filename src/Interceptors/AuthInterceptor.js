@@ -1,14 +1,20 @@
+
 import axios from "axios";
+import { baseUrl } from "../environment.dev";
 
-const requestInterceptor = (config)=>{
-    const token = sessionStorage.getItem("token");
-    if(token)
-    {
-        config.headers["Authorization"] = `Bearer ${token}`;
+const api = axios.create({
+  baseURL: baseUrl, 
+});
+api.interceptors.request.use(
+  (config) => {
+    const token = localStorage.getItem("token");
+    if (token) {
+      config.headers.Authorization = `Bearer ${token}`;
     }
-     return config;
-}
+    return config;
+  },
+  (error) => Promise.reject(error)
+);
 
-axios.interceptors.request.use(requestInterceptor);
+export default api;
 
-export default axios;
