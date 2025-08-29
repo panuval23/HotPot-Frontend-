@@ -23,29 +23,69 @@ export default function Login() {
     setUser((prev) => ({ ...prev, [name]: value }));
   };
 
+  // const login = () => {
+  //   if (!user.username || !user.password) {
+  //     alert("Please fill in both fields");
+  //     return;
+  //   }
+
+  //   loginAPICall(user)
+  //     .then((res) => {
+  //       dispatch(
+  //         setAuth({
+  //           token: res.data.token,
+  //           role: res.data.role, 
+  //           username: res.data.username,
+            
+  //         })
+
+
+  //       );
+
+  //       alert("Login successful");
+  //       if (res.data.role?.toLowerCase() === "admin") {
+  //         navigate("/admin");
+  //       } else {
+  //         navigate("/");
+  //       }
+  //     })
+  //     .catch((err) => {
+  //       console.error(err);
+  //       alert("Invalid username or password");
+  //     });
+  // };
   const login = () => {
     if (!user.username || !user.password) {
       alert("Please fill in both fields");
       return;
     }
-
+  
     loginAPICall(user)
       .then((res) => {
-        dispatch(
-          setAuth({
-            token: res.data.token,
-            role: res.data.role, 
-            username: res.data.username,
-            
-          })
-
-
-        );
-
+        const { token, role, username } = res.data;
+  
+    
+        dispatch(setAuth({ token, role, username }));
+  
+     
+        localStorage.setItem("token", token);
+        localStorage.setItem("role", role);
+        localStorage.setItem("username", username);
+  
         alert("Login successful");
-        if (res.data.role?.toLowerCase() === "admin") {
+  
+     
+        if (role?.toLowerCase() === "admin") {
           navigate("/admin");
-        } else {
+        } else if (role?.toLowerCase() === "restaurant") {
+          navigate("/restaurant");
+        }
+        else if (role?.toLowerCase() === "user") {
+          navigate("/user/dashboard");
+        }
+        
+        
+        else {
           navigate("/");
         }
       })
@@ -54,6 +94,7 @@ export default function Login() {
         alert("Invalid username or password");
       });
   };
+  
 
   return (
     <div className="login-container">
