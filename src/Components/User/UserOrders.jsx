@@ -13,8 +13,8 @@ const UserOrders = () => {
   }, [dispatch]);
 
   const calculateFinalAmount = (order) => {
-    const deliveryFee = 25; // Flat fee
-    const gst = order.totalAmount * 0.05; // 5% GST
+    const deliveryFee = 25; 
+    const gst = order.totalAmount * 0.05; 
     return {
       itemTotal: order.totalAmount,
       deliveryFee,

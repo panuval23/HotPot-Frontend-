@@ -1,0 +1,32 @@
+.reviews-container {
+    max-width: 700px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fffefc;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+  }
+  
+  .reviews-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  .review-item {
+    padding: 1rem;
+    margin: 0.5rem 0;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .review-item p {
+    margin: 0.2rem 0;
+  }
+  
+  .review-item small {
+    color: #777;
+  }
+  
+  .error-msg {
+    color: #d9534f;
+  }
+  

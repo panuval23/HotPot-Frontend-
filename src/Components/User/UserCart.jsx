@@ -1,24 +1,32 @@
+
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { fetchCart, removeCartItem, updateCartItem } from "../../store/userCartSlice";
+import {
+  fetchCart,
+  removeCartItem,
+  updateCartItem,
+} from "../../store/userCartSlice";
 import { useNavigate } from "react-router-dom";
 
 const UserCart = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { items = [], totalCost = 0 } = useSelector((state) => state.userCart);
+
+  const { items = [], totalCost = 0, loading, error } = useSelector(
+    (state) => state.userCart || {}
+  );
 
   useEffect(() => {
     dispatch(fetchCart());
   }, [dispatch]);
 
   const handleIncrease = (item) => {
-    dispatch(updateCartItem({ CartID: item.cartID, Quantity: item.quantity + 1 }));
+    dispatch(updateCartItem({ cartId: item.cartID, quantity: item.quantity + 1 }));
   };
 
   const handleDecrease = (item) => {
     if (item.quantity > 1) {
-      dispatch(updateCartItem({ CartID: item.cartID, Quantity: item.quantity - 1 }));
+      dispatch(updateCartItem({ cartId: item.cartID, quantity: item.quantity - 1 }));
     }
   };
 
@@ -27,12 +35,16 @@ const UserCart = () => {
   };
 
   const handleCheckout = () => {
-    navigate("/user/checkout");
+    navigate("/user/checkout"); // go to checkout page
   };
 
   return (
     <div className="container mt-4">
       <h3>Your Cart</h3>
+
+      {loading && <p>Loading cart...</p>}
+      {error && <div className="alert alert-danger">{error}</div>}
+
       {items.length === 0 ? (
         <p>No items in cart.</p>
       ) : (
@@ -47,7 +59,6 @@ const UserCart = () => {
                   <strong>{item.menuItemName}</strong> <br />
                   ₹{item.finalPrice} × {item.quantity}
                 </div>
-
                 <div className="d-flex align-items-center">
                   <button
                     className="btn btn-sm btn-outline-danger me-2"
@@ -70,14 +81,17 @@ const UserCart = () => {
                     ❌
                   </button>
                 </div>
-
                 <div>₹{item.subtotal}</div>
               </li>
             ))}
           </ul>
 
           <h5>Total: ₹{totalCost}</h5>
-          <button className="btn btn-success mt-3" onClick={handleCheckout}>
+          <button
+            className="btn btn-success mt-3"
+            onClick={handleCheckout}
+            disabled={loading}
+          >
             Checkout
           </button>
         </>

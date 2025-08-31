@@ -1,0 +1,44 @@
+.discount-container {
+    max-width: 400px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: #fff7f0;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    text-align: center;
+  }
+  
+  .discount-form input {
+    display: block;
+    width: 100%;
+    padding: 0.6rem;
+    margin: 0.5rem 0;
+    border-radius: 6px;
+    border: 1px solid #ddd;
+  }
+  
+  .discount-form button {
+    padding: 0.7rem 1.2rem;
+    margin: 0.5rem 0.3rem;
+    border: none;
+    border-radius: 6px;
+    background-color: #fc8019;
+    color: white;
+    cursor: pointer;
+    font-weight: bold;
+  }
+  
+  .clear-btn {
+    background-color: #ccc;
+    color: #333;
+  }
+  
+  .error-msg {
+    color: #d9534f;
+  }
+  
+  .success-msg {
+    color: #28a745;
+    font-weight: bold;
+  }
+  

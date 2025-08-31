@@ -1,4 +1,6 @@
-import { useSelector, useDispatch } from "react-redux";
+
+import React from "react";
+import { useDispatch, useSelector } from "react-redux";
 import { useLocation, useNavigate } from "react-router-dom";
 import { placeOrder, setLastOrder } from "../../store/orderSlice";
 
@@ -7,24 +9,22 @@ const OrderSummary = () => {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const { shippingAddressID, paymentMethod } = location.state || {};
-
-
-  const { items = [], totalCost = 0 } = useSelector(
-    (state) => state.userCart || {}
-  );
-
+  const {
+    shippingAddressID,
+    paymentMethod,
+    cartItems = [],
+    totalCost = 0,
+  } = location.state || {};
 
   const { items: addresses = [] } = useSelector((state) => state.address || {});
-  const selectedAddress = addresses.find(
-    (a) => a.addressID === shippingAddressID
-  );
+  const selectedAddress = addresses.find((a) => a.addressID === shippingAddressID);
 
+  // Get restaurant info from first item
+  const restaurantImage = cartItems[0]?.restaurantImage;
+  const restaurantName = cartItems[0]?.restaurantName || "Restaurant";
+  const restaurantAddress = cartItems[0]?.restaurantAddress || "";
 
-  const restaurantName =
-    items.length > 0 ? items[0].restaurantName : "Restaurant";
-
-  const deliveryFee = 25; 
+  const deliveryFee = 25;
   const gst = (totalCost * 0.05).toFixed(2);
   const finalTotal = (totalCost + deliveryFee + parseFloat(gst)).toFixed(2);
 
@@ -38,8 +38,6 @@ const OrderSummary = () => {
       ).unwrap();
 
       dispatch(setLastOrder(response));
-
- 
       navigate("/user/order-success");
     } catch (err) {
       console.error("Order failed", err);
@@ -51,11 +49,12 @@ const OrderSummary = () => {
     <div className="container mt-4">
       <h3>Order Summary</h3>
 
+      {/* Restaurant Info */}
       <div className="card p-3 mb-3">
         <div className="d-flex align-items-center">
           <img
-            src={items[0]?.restaurantImage}
-            alt={items[0]?.restaurantName}
+            src={restaurantImage}
+            alt={restaurantName}
             style={{
               width: "70px",
               height: "70px",
@@ -65,16 +64,17 @@ const OrderSummary = () => {
             }}
           />
           <div>
-            <h5>{items[0]?.restaurantName}</h5>
-            <p className="text-muted">{items[0]?.restaurantAddress}</p>
+            <h5>{restaurantName}</h5>
+            <p className="text-muted">{restaurantAddress}</p>
           </div>
         </div>
       </div>
 
+      {/* Items */}
       <div className="card card-body mb-3">
         <h5>Items</h5>
         <ul className="list-group">
-          {items.map((item) => (
+          {cartItems.map((item) => (
             <li
               key={item.cartID}
               className="list-group-item d-flex justify-content-between"
@@ -88,7 +88,7 @@ const OrderSummary = () => {
         </ul>
       </div>
 
-
+      {/* Delivery */}
       <div className="card card-body mb-3">
         <h5>Delivery Details</h5>
         {selectedAddress ? (
@@ -104,6 +104,7 @@ const OrderSummary = () => {
         </p>
       </div>
 
+      {/* Bill */}
       <div className="card card-body mb-3">
         <h5>Bill Details</h5>
         <div className="d-flex justify-content-between">
@@ -128,7 +129,7 @@ const OrderSummary = () => {
       <button
         className="btn btn-success w-100"
         onClick={handlePlaceOrder}
-        disabled={items.length === 0}
+        disabled={cartItems.length === 0}
       >
         Place Order
       </button>

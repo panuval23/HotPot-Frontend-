@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchAddresses, createAddress } from "../../store/addressSlice";
@@ -7,11 +8,13 @@ const CheckoutPage = () => {
   const dispatch = useDispatch();
   const navigate = useNavigate();
 
-  // Redux State
-  const { items: addresses = [], status = "idle" } =
-    useSelector((state) => state.address || {});
+  const { items: addresses = [], status = "idle" } = useSelector(
+    (state) => state.address || {}
+  );
+  const { items: cartItems = [], totalCost = 0 } = useSelector(
+    (state) => state.userCart || {}
+  );
 
-  // Local State
   const [selectedAddress, setSelectedAddress] = useState(null);
   const [paymentMethod, setPaymentMethod] = useState("COD");
   const [showForm, setShowForm] = useState(false);
@@ -38,6 +41,8 @@ const CheckoutPage = () => {
       state: {
         shippingAddressID: selectedAddress,
         paymentMethod,
+        cartItems,
+        totalCost,
       },
     });
   };
@@ -53,7 +58,7 @@ const CheckoutPage = () => {
         landmark: "",
         addressType: "Home",
       });
-      dispatch(fetchAddresses()); // refresh list
+      dispatch(fetchAddresses());
     });
   };
 
@@ -61,12 +66,9 @@ const CheckoutPage = () => {
     <div className="container mt-4">
       <h3>Checkout</h3>
 
-      {/* Address Selection */}
       <h5 className="mt-3">Select Delivery Address</h5>
       {status === "loading" && <p>Loading addresses...</p>}
-      {status === "failed" && (
-        <p className="text-danger">Failed to load addresses.</p>
-      )}
+      {status === "failed" && <p className="text-danger">Failed to load addresses.</p>}
 
       {addresses.length === 0 && !showForm && (
         <p>No saved addresses. Please add one below.</p>
@@ -90,7 +92,6 @@ const CheckoutPage = () => {
         </div>
       )}
 
-      {/* Toggle Add New Address Form */}
       {!showForm ? (
         <button
           className="btn btn-outline-primary mb-3"
@@ -106,52 +107,40 @@ const CheckoutPage = () => {
             placeholder="Address Line"
             className="form-control mb-2"
             value={newAddress.addressLine}
-            onChange={(e) =>
-              setNewAddress({ ...newAddress, addressLine: e.target.value })
-            }
+            onChange={(e) => setNewAddress({ ...newAddress, addressLine: e.target.value })}
           />
           <input
             type="text"
             placeholder="City"
             className="form-control mb-2"
             value={newAddress.city}
-            onChange={(e) =>
-              setNewAddress({ ...newAddress, city: e.target.value })
-            }
+            onChange={(e) => setNewAddress({ ...newAddress, city: e.target.value })}
           />
           <input
             type="text"
             placeholder="State"
             className="form-control mb-2"
             value={newAddress.state}
-            onChange={(e) =>
-              setNewAddress({ ...newAddress, state: e.target.value })
-            }
+            onChange={(e) => setNewAddress({ ...newAddress, state: e.target.value })}
           />
           <input
             type="text"
             placeholder="Pincode"
             className="form-control mb-2"
             value={newAddress.pincode}
-            onChange={(e) =>
-              setNewAddress({ ...newAddress, pincode: e.target.value })
-            }
+            onChange={(e) => setNewAddress({ ...newAddress, pincode: e.target.value })}
           />
           <input
             type="text"
             placeholder="Landmark"
             className="form-control mb-2"
             value={newAddress.landmark}
-            onChange={(e) =>
-              setNewAddress({ ...newAddress, landmark: e.target.value })
-            }
+            onChange={(e) => setNewAddress({ ...newAddress, landmark: e.target.value })}
           />
           <select
             className="form-select mb-2"
             value={newAddress.addressType}
-            onChange={(e) =>
-              setNewAddress({ ...newAddress, addressType: e.target.value })
-            }
+            onChange={(e) => setNewAddress({ ...newAddress, addressType: e.target.value })}
           >
             <option value="Home">Home</option>
             <option value="Work">Work</option>
@@ -160,16 +149,12 @@ const CheckoutPage = () => {
           <button className="btn btn-success me-2" onClick={handleAddAddress}>
             Save Address
           </button>
-          <button
-            className="btn btn-secondary"
-            onClick={() => setShowForm(false)}
-          >
+          <button className="btn btn-secondary" onClick={() => setShowForm(false)}>
             Cancel
           </button>
         </div>
       )}
 
-      {/* Payment Method */}
       <h5 className="mt-4">Payment Method</h5>
       <select
         className="form-select"
@@ -182,7 +167,6 @@ const CheckoutPage = () => {
         <option value="NETBANKING">Net Banking</option>
       </select>
 
-      {/* Proceed Button */}
       <button
         className="btn btn-success mt-4"
         onClick={handleProceed}

@@ -5,11 +5,13 @@ import categoryReducer from "./categorySlice";
 import menuReducer from "./menuSlice";
 import restaurantReducer from "./restaurantSlice";
 import userCartReducer from "./userCartSlice";
-
+import restaurantReviewsReducer from "./restaurantReviewsSlice";
 import orderReducer from "./orderSlice"; 
-import reviewsReducer from "./reviewsSlice";
+
 import userMenuReducer from "./userMenuSlice";
 import addressReducer from "./addressSlice";
+import restaurantOrderReducer from "./restaurantOrderSlice";
+import discountReducer from "./discountSlice";
 
 
 
@@ -22,9 +24,13 @@ const store = configureStore({
     restaurants: restaurantReducer,
     userCart: userCartReducer,
     address: addressReducer, 
-    order: orderReducer, 
-    reviews: reviewsReducer,
+  
+     order: orderReducer,
     userMenu: userMenuReducer,
+    restaurantOrders: restaurantOrderReducer,
+    discount: discountReducer,
+
+    restaurantReviews: restaurantReviewsReducer,
   },
 });
 

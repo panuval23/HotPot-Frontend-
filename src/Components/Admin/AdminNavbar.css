@@ -1,0 +1,64 @@
+.admin-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 0.75rem 1.5rem;
+  }
+  
+  .admin-nav .brand {
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: #ff6a00;
+  }
+  
+  .admin-nav .links {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .admin-nav .links a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #333;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  
+  .admin-nav .links a.active {
+    background: #ff6a00;
+    color: #fff;
+  }
+  
+  .admin-nav .links a:hover {
+    background: #f5f5f5;
+  }
+  
+  .admin-nav .links .btn-primary {
+    background: #ff6a00;
+    color: #fff;
+    border-radius: 6px;
+    padding: 0.4rem 0.9rem;
+    font-weight: 600;
+  }
+  
+  .admin-nav .links .btn-primary:hover {
+    background: #e65a00;
+  }
+  
+  .admin-nav .btn-ghost {
+    background: transparent;
+    border: 1px solid #ddd;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  
+  .admin-nav .btn-ghost:hover {
+    background: #f2f2f2;
+  }
+  

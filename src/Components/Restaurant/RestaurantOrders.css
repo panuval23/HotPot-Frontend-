@@ -1,0 +1,48 @@
+
+   .orders-page {
+    display: flex;
+    gap: 20px;
+  }
+  
+  .orders-list {
+    width: 35%;
+    border-right: 1px solid #ddd;
+    padding: 10px;
+  }
+  
+  .order-list-item {
+    padding: 10px;
+    border: 1px solid #eee;
+    margin-bottom: 8px;
+    cursor: pointer;
+    border-radius: 6px;
+    background: #f9f9f9;
+  }
+  
+  .order-list-item.active {
+    background: #e0f0ff;
+    border-left: 4px solid #007bff;
+  }
+  
+  .status-badge {
+    display: inline-block;
+    padding: 2px 8px;
+    border-radius: 4px;
+    font-size: 12px;
+  }
+  
+  .status-badge.delivered {
+    background: #28a745;
+    color: white;
+  }
+  
+  .status-badge.pending {
+    background: #ffc107;
+    color: black;
+  }
+  
+  .order-details {
+    flex: 1;
+    padding: 15px;
+  }
+  

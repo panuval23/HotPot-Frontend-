@@ -1,0 +1,99 @@
+/* Navbar Container */
+.restaurant-nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 40px;
+  background: #fff;
+  border-bottom: 1px solid #eee;
+  box-shadow: 0px 2px 8px rgba(0, 0, 0, 0.05);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  font-family: "Inter", sans-serif;
+}
+
+/* Brand Section */
+.restaurant-nav .brand {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  cursor: pointer;
+}
+
+.brand-logo {
+  height: 36px;
+  width: 36px;
+  object-fit: contain;
+}
+
+.brand-text {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #fc8019; /* Swiggy orange */
+}
+
+/* Links */
+.restaurant-nav .links {
+  display: flex;
+  gap: 20px;
+}
+
+.restaurant-nav .links a {
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  color: #333;
+  padding: 6px 12px;
+  border-radius: 6px;
+  transition: all 0.2s ease-in-out;
+}
+
+.restaurant-nav .links a:hover {
+  background: rgba(252, 128, 25, 0.1);
+  color: #fc8019;
+}
+
+/* Active Link */
+.restaurant-nav .links .active {
+  color: #fc8019;
+  font-weight: 600;
+  border-bottom: 2px solid #fc8019;
+}
+
+/* Logout Button */
+.btn-logout {
+  background: #fc8019;
+  color: white;
+  border: none;
+  padding: 8px 18px;
+  border-radius: 6px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.btn-logout:hover {
+  background: #e56d0c;
+}
+
+/* Mobile Responsive */
+@media (max-width: 768px) {
+  .restaurant-nav {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 12px 20px;
+  }
+
+  .restaurant-nav .links {
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 10px;
+  }
+
+  .btn-logout {
+    margin-top: 12px;
+    align-self: flex-start;
+  }
+}

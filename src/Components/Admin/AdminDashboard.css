@@ -1,4 +1,4 @@
-
+/* 
 
    .admin-dashboard {
     font-family: "Poppins", sans-serif;
@@ -135,7 +135,7 @@
   }
   
   /* User Addresses */
-  .user-address {
+  /* .user-address {
     margin-bottom: 6px;
     font-size: 13px;
     color: #555;
@@ -175,5 +175,99 @@
     background: #ff6600;
     color: #fff;
     cursor: default;
+  } */
+  /* .admin-shell { min-height: 100vh; background:#fafafa; }
+  .admin-nav {
+    position: sticky; top:0; z-index:10; background:#fff; border-bottom:1px solid #eee;
+    display:flex; align-items:center; justify-content:space-between; padding:12px 20px; gap:12px;
+  }
+  .admin-nav .links { display:flex; gap:12px; align-items:center; }
+  .admin-nav a { text-decoration:none; color:#333; padding:8px 10px; border-radius:10px; }
+  .admin-nav a.active { background:#f0f6ff; }
+  .btn-primary { background:#ff6b00; color:#fff !important; padding:8px 12px; border-radius:10px; }
+  .btn-ghost { background:transparent; border:1px solid #ddd; padding:8px 12px; border-radius:10px; }
+  
+  .admin-main { max-width:1100px; margin:24px auto; padding:0 16px; }
+  .grid-cards { display:grid; grid-template-columns: repeat(auto-fit,minmax(220px,1fr)); gap:16px; }
+  .card { background:#fff; border:1px solid #eee; border-radius:16px; padding:16px; }
+  .card .metric { font-size:28px; font-weight:700; margin:6px 0 10px; }
+  
+  .admin-section { background:#fff; border:1px solid #eee; border-radius:16px; padding:16px; }
+  .section-head { display:flex; align-items:center; justify-content:space-between; margin-bottom:12px; }
+  
+  .placeholder {
+    border:2px dashed #ddd; border-radius:12px; padding:36px; text-align:center; color:#888;
+  }
+  .page-btn {
+    padding: 6px 10px;
+    border-radius: 8px;
+    border: 1px solid #ddd;
+    background: white;
+  }
+  .page-btn.active {
+    background: #ff6b00;
+    color: white;
+    border-color: #ff6b00;
+  }
+  .btn-ghost { border:1px solid #ddd; padding:6px 10px; border-radius:8px; background:transparent; } */
+
+  .admin-dashboard {
+    padding: 2rem;
+    background: #f9fafc;
+    min-height: 100vh;
+  }
+  
+  .admin-dashboard h1 {
+    margin-bottom: 1.5rem;
+    font-weight: bold;
+    font-size: 1.75rem;
+    color: #333;
+  }
+  
+  .grid-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 1.5rem;
+  }
+  
+  .card {
+    background: #fff;
+    border-radius: 12px;
+    padding: 1.5rem;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.05);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+  }
+  
+  .card h3 {
+    font-size: 1.1rem;
+    color: #666;
+    margin-bottom: 0.75rem;
+  }
+  
+  .card .metric {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #222;
+    margin-bottom: 1rem;
+  }
+  
+  .card button {
+    background: #ff6a00;
+    border: none;
+    color: #fff;
+    padding: 0.5rem 1rem;
+    border-radius: 6px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: background 0.2s ease;
+  }
+  
+  .card button:hover {
+    background: #e65a00;
   }
   
