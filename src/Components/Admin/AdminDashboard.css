@@ -270,4 +270,14 @@
   .card button:hover {
     background: #e65a00;
   }
+  .admin-shell {
+    display: flex;
+    flex-direction: column;
+  }
+  
+  .admin-main {
+    padding-top: 70px; /* same height as fixed AdminNavbar */
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
   

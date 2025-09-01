@@ -1,4 +1,4 @@
-.register-container {
+/* .register-container {
   height: 100vh;
   display: flex;
   justify-content: center;
@@ -99,7 +99,177 @@
   margin-top: 12px;
   font-size: 14px;
 }
+.spinner {
+  width: 16px;
+  height: 16px;
+  border: 2px solid #fff;
+  border-top: 2px solid transparent;
+  border-radius: 50%;
+  display: inline-block;
+  animation: spin 0.8s linear infinite;
+}
 
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(15px); }
+  to { opacity: 1; transform: translateY(0); }
+} */
+
+
+.register-container {
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: linear-gradient(135deg, #fc8019, #ff9a4c);
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+.register-card {
+  background: #fff;
+  padding: 40px;
+  border-radius: 14px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.15);
+  width: 650px; 
+  animation: fadeIn 0.4s ease-in-out;
+}
+
+.register-card h2 {
+  text-align: center;
+  margin-bottom: 8px;
+  color: #333;
+  font-size: 24px;
+}
+
+.register-card p {
+  text-align: center;
+  margin-bottom: 25px;
+  color: #555;
+  font-size: 14px;
+}
+
+.register-card form {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+}
+
+.full-width {
+  grid-column: span 2;
+}
+
+.register-card label {
+  display: block;
+  font-size: 14px;
+  margin-bottom: 6px;
+  font-weight: 500;
+  color: #444;
+}
+
+.register-card input,
+.register-card select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: border 0.3s, box-shadow 0.3s;
+}
+
+.register-card input:focus,
+.register-card select:focus {
+  border-color: #fc8019;
+  box-shadow: 0 0 6px rgba(252, 128, 25, 0.4);
+}
+
+.gender-group {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  padding: 8px;
+}
+
+.btn-register {
+  grid-column: span 2;
+  padding: 12px;
+  background: #28a745;
+  border: none;
+  color: white;
+  font-weight: bold;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 15px;
+  transition: 0.3s;
+}
+
+.btn-register:hover {
+  background: #218838;
+}
+
+.register-footer {
+  grid-column: span 2;
+  text-align: center;
+  margin-top: 12px;
+  font-size: 14px;
+}
+
+/* ✅ Toast Styling */
+.toast-base {
+  border-radius: 8px !important;
+  font-size: 14px !important;
+  font-weight: 500 !important;
+}
+
+.toast-error {
+  background-color: #ff4d4f !important;
+  color: #fff !important;
+}
+
+.toast-success {
+  text-align: center;
+}
+
+.toast-success h4 {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 0 0 4px 0;   /* removes top gap, keeps small spacing below */
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.toast-success p {
+  margin: 2px 0;       /* reduces vertical gap */
+  font-size: 14px;
+}
+
+
+.toast-ok-btn {
+  margin-top: 10px;
+  padding: 8px 14px;
+  background-color: #28a745;
+  border: none;
+  border-radius: 6px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.toast-ok-btn:hover {
+  background-color: #218838;
+}
+
+/* Animations */
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(15px); }
   to { opacity: 1; transform: translateY(0); }

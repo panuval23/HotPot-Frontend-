@@ -23,7 +23,7 @@ import UserNavbar from "./Components/User/UserNavbar";
 import AdminLayout from "./Components/Admin/AdminLayout";
 import AdminDashboard from "./Components/Admin/AdminDashboard";
 
-
+import AdminUsersPage from "./Components/Admin/AdminUsersPage";
 import NormalUsersPage from "./Components/Admin/NormalUsersPage";
 import RestaurantLinkedUsersPage from "./Components/Admin/RestaurantLinkedUsersPage";
 import RestaurantNotLinkedUsersPage from "./Components/Admin/RestaurantNotLinkedUsersPage";
@@ -45,15 +45,18 @@ function App() {
   const role = localStorage.getItem("role");
   const location = useLocation();
 
-  const renderNavbar = () => {
-  
-    if (["/login", "/register"].includes(location.pathname)) return null;
+  // inside App.js
+const renderNavbar = () => {
+  // hide navbar on login, register, and home
+  if (["/login", "/register", "/"].includes(location.pathname)) return null;
 
-    // if (role?.toLowerCase() === "admin") return <AdminNavbar />;
-    if (role?.toLowerCase() === "user") return <UserNavbar />;
-    if (role?.toLowerCase() === "restaurant") return <RestaurantNavbar />;
-    return null;
-  };
+  // if (role?.toLowerCase() === "admin") return <AdminNavbar />;
+  if (role?.toLowerCase() === "user") return <UserNavbar />;
+  if (role?.toLowerCase() === "restaurant") return <RestaurantNavbar />;
+
+  return null;
+};
+
 
   return (
     <>
@@ -71,10 +74,10 @@ function App() {
           path="/user/dashboard"
           element={<ProtectedRoute allowedRole="user"><UserDashboard /></ProtectedRoute>}
         />
-        <Route
+        {/* <Route
           path="/admin"
           element={<ProtectedRoute allowedRole="admin"><AdminDashboard /></ProtectedRoute>}
-        />
+        /> */}
         <Route
           path="/restaurant"
           element={<ProtectedRoute allowedRole="restaurant"><RestaurantDashboard /></ProtectedRoute>}
@@ -114,21 +117,19 @@ function App() {
         />
         <Route path="/reviews/add/:menuItemId" element={   <ProtectedRoute allowedRole="user">     <UserReview />   </ProtectedRoute> }/>
 
+      </Routes>
 
-        {/* ADMIN layout */}
-        <Route
-          path="/admin"
-          element={<ProtectedRoute allowedRole="Admin"><AdminLayout /></ProtectedRoute>}
-        >
-          <Route index element={<AdminDashboard />} />
-          {/* <Route path="users" element={<UsersPage />} /> */}
-          <Route path="/admin/users/normal" element={<NormalUsersPage />} />
-      <Route path="/admin/users/linked" element={<RestaurantLinkedUsersPage />} />
-      <Route path="/admin/users/unlinked" element={<RestaurantNotLinkedUsersPage />} />
+      <Routes>
+          <Route path="/admin" element={  <ProtectedRoute allowedRole="Admin"><AdminLayout /></ProtectedRoute>}><Route index element={<AdminDashboard />} />
+          <Route path="users/normal" element={<NormalUsersPage />} />
+          <Route path="users/linked" element={<RestaurantLinkedUsersPage />} />
+          <Route path="users/unlinked" element={<RestaurantNotLinkedUsersPage />} />
+          <Route path="users/admins" element={<AdminUsersPage />} />
           <Route path="restaurants" element={<RestaurantsPage />} />
           <Route path="restaurants/add" element={<AddRestaurantPage />} />
-        </Route>
+         </Route>
       </Routes>
+      
     </>
   );
 }

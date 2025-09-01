@@ -19,6 +19,8 @@ export default function AdminNavbar() {
         <NavLink to="/admin/users/normal">Normal Users</NavLink>
 <NavLink to="/admin/users/linked">Restaurant Users - Linked</NavLink>
 <NavLink to="/admin/users/unlinked">Restaurant Users - Not Linked</NavLink>
+<NavLink to="/admin/users/admins">Admin Users</NavLink>
+
 
         <NavLink to="/admin/restaurants">Restaurants</NavLink>
         <NavLink to="/admin/restaurants/add" className="btn-primary">

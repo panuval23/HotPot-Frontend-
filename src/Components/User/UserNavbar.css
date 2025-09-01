@@ -1,5 +1,5 @@
 
-
+/* 
    .user-nav {
     display: flex;
     align-items: center;
@@ -13,6 +13,109 @@
     font-weight: bold;
     font-size: 1.25rem;
     color: #ff6a00;
+  }
+
+  .user-nav .search-form {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+  }
+  
+  .user-nav .search-form input {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    outline: none;
+    font-size: 0.95rem;
+  }
+  
+  .user-nav .search-form button {
+    background: #ff6a00;
+    color: #fff;
+    border: none;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: background 0.2s ease;
+  }
+  
+  .user-nav .search-form button:hover {
+    background: #e65a00;
+  }
+  
+
+  .user-nav .filter-dropdown {
+    padding: 0.4rem 0.6rem;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 0.95rem;
+    outline: none;
+  }
+  
+
+  .user-nav .links {
+    display: flex;
+    gap: 1rem;
+  }
+  
+  .user-nav .links a {
+    text-decoration: none;
+    font-weight: 500;
+    color: #333;
+    padding: 0.4rem 0.8rem;
+    border-radius: 6px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  
+  .user-nav .links a.active {
+    background: #ff6a00;
+    color: #fff;
+  }
+  
+  .user-nav .links a:hover {
+    background: #f5f5f5;
+  }
+  
+
+  .user-nav .btn-ghost {
+    background: transparent;
+    border: 1px solid #ddd;
+    padding: 0.4rem 0.9rem;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  
+  .user-nav .btn-ghost:hover {
+    background: #f2f2f2;
+  } */
+  
+
+  .user-nav {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: #fff;
+    border-bottom: 1px solid #ddd;
+    padding: 0.75rem 1.5rem;
+  }
+  
+  /* ✅ Brand with logo */
+  .user-nav .brand {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 1.25rem;
+    color: #ff6a00;
+    gap: 0.5rem;
+  }
+  
+  .user-nav .brand-logo {
+    width: 32px;
+    height: 32px;
+    object-fit: contain;
   }
   
   /* Search form */
@@ -45,22 +148,14 @@
     background: #e65a00;
   }
   
-  /* Filter dropdown */
-  .user-nav .filter-dropdown {
-    padding: 0.4rem 0.6rem;
-    border: 1px solid #ccc;
-    border-radius: 6px;
-    font-size: 0.95rem;
-    outline: none;
-  }
-  
-  /* Links */
-  .user-nav .links {
+  /* ✅ Group Orders + Logout */
+  .user-nav .nav-actions {
     display: flex;
-    gap: 1rem;
+    align-items: center;
+    gap: 0.75rem;
   }
   
-  .user-nav .links a {
+  .user-nav .orders-link {
     text-decoration: none;
     font-weight: 500;
     color: #333;
@@ -69,12 +164,12 @@
     transition: background 0.2s ease, color 0.2s ease;
   }
   
-  .user-nav .links a.active {
+  .user-nav .orders-link.active {
     background: #ff6a00;
     color: #fff;
   }
   
-  .user-nav .links a:hover {
+  .user-nav .orders-link:hover {
     background: #f5f5f5;
   }
   
