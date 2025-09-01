@@ -16,7 +16,7 @@ export default function Register() {
   const register = (e) => {
     e.preventDefault();
 
-    // Validation: required fields
+   
     if (
       !user.username ||
       !user.name ||

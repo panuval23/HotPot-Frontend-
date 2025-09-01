@@ -1,4 +1,3 @@
-
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import {
   getCurrentOrders,
@@ -6,11 +5,14 @@ import {
   updateOrderStatus,
 } from "../Services/order.service";
 
+
 export const fetchCurrentOrders = createAsyncThunk(
   "restaurantOrders/fetchCurrent",
   async (_, { rejectWithValue }) => {
     try {
-      return await getCurrentOrders();
+      const res = await getCurrentOrders();
+      console.log("📦 Current Orders API response:", res);
+      return res;
     } catch (err) {
       return rejectWithValue(
         err.response?.data?.Message || "Failed to load current orders"
@@ -19,11 +21,14 @@ export const fetchCurrentOrders = createAsyncThunk(
   }
 );
 
+
 export const fetchOrderHistory = createAsyncThunk(
   "restaurantOrders/fetchHistory",
   async (_, { rejectWithValue }) => {
     try {
-      return await getOrderHistory();
+      const res = await getOrderHistory();
+      console.log("📦 Order History API response:", res);
+      return res;
     } catch (err) {
       return rejectWithValue(
         err.response?.data?.Message || "Failed to load order history"
@@ -46,15 +51,19 @@ export const changeOrderStatus = createAsyncThunk(
   }
 );
 
+const initialState = {
+  currentOrders: { items: [] }, 
+  history: { items: [] },       
+  loading: false,
+  error: null,
+};
+
 const restaurantOrderSlice = createSlice({
   name: "restaurantOrders",
-  initialState: {
-    currentOrders: null,
-    history: null,
-    loading: false,
-    error: null,
+  initialState,
+  reducers: {
+    resetOrders: () => initialState, 
   },
-  reducers: {},
   extraReducers: (builder) => {
     builder
       
@@ -64,11 +73,20 @@ const restaurantOrderSlice = createSlice({
       })
       .addCase(fetchCurrentOrders.fulfilled, (state, action) => {
         state.loading = false;
-        state.currentOrders = action.payload;
+
+        
+        if (Array.isArray(action.payload)) {
+          state.currentOrders = { items: action.payload };
+        } else if (action.payload?.items && Array.isArray(action.payload.items)) {
+          state.currentOrders = { items: action.payload.items };
+        } else {
+          state.currentOrders = { items: [] };
+        }
       })
       .addCase(fetchCurrentOrders.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+        state.currentOrders = { items: [] };
       })
 
       
@@ -78,20 +96,27 @@ const restaurantOrderSlice = createSlice({
       })
       .addCase(fetchOrderHistory.fulfilled, (state, action) => {
         state.loading = false;
-        state.history = action.payload;
+
+        if (Array.isArray(action.payload)) {
+          state.history = { items: action.payload };
+        } else if (action.payload?.items && Array.isArray(action.payload.items)) {
+          state.history = { items: action.payload.items };
+        } else {
+          state.history = { items: [] };
+        }
       })
       .addCase(fetchOrderHistory.rejected, (state, action) => {
         state.loading = false;
         state.error = action.payload;
+        state.history = { items: [] };
       })
 
-    
+      
       .addCase(changeOrderStatus.fulfilled, (state, action) => {
         state.loading = false;
         const updated = action.payload.updatedOrder;
 
-        if (state.currentOrders?.items) {
-        
+        if (state.currentOrders?.items?.length) {
           if (
             updated.status === "Delivered" ||
             updated.status === "Cancelled"
@@ -100,12 +125,9 @@ const restaurantOrderSlice = createSlice({
               (o) => o.orderID !== updated.orderID
             );
 
-            if (!state.history) {
-              state.history = { items: [] };
-            }
+            if (!state.history) state.history = { items: [] };
             state.history.items = [updated, ...(state.history.items || [])];
           } else {
-        
             state.currentOrders.items = state.currentOrders.items.map((o) =>
               o.orderID === updated.orderID ? updated : o
             );
@@ -118,4 +140,5 @@ const restaurantOrderSlice = createSlice({
   },
 });
 
+export const { resetOrders } = restaurantOrderSlice.actions;
 export default restaurantOrderSlice.reducer;

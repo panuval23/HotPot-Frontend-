@@ -9,6 +9,7 @@ import {
   fetchCart,
   updateCartItem,
 } from "../../store/userCartSlice";
+import "./RestaurantMenu.css";
 
 const RestaurantMenu = () => {
   const { id: restaurantId } = useParams();
@@ -311,7 +312,7 @@ const RestaurantMenu = () => {
                     <>₹{selectedItem.price}</>
                   )}
                 </p>
-                <p><b>Type:</b> {selectedItem.isVeg ? "🥦 Veg" : "🍗 Non-Veg"}</p>
+                <p><b>Type:</b> {selectedItem.isVeg ? "Veg" : "Non-Veg"}</p>
               </div>
               <div className="modal-footer">
                 <button className="btn btn-secondary" onClick={() => setSelectedItem(null)}>

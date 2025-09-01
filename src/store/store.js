@@ -7,7 +7,7 @@ import restaurantReducer from "./restaurantSlice";
 import userCartReducer from "./userCartSlice";
 import restaurantReviewsReducer from "./restaurantReviewsSlice";
 import orderReducer from "./orderSlice"; 
-
+import userReducer from "./userSlice";
 import userMenuReducer from "./userMenuSlice";
 import addressReducer from "./addressSlice";
 import restaurantOrderReducer from "./restaurantOrderSlice";
@@ -24,7 +24,7 @@ const store = configureStore({
     restaurants: restaurantReducer,
     userCart: userCartReducer,
     address: addressReducer, 
-  
+    user: userReducer,
      order: orderReducer,
     userMenu: userMenuReducer,
     restaurantOrders: restaurantOrderReducer,

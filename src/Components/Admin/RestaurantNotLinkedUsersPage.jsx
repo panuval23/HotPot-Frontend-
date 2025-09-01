@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, deleteUser } from "../../store/adminSlice";
 import UserTable from "./UserTable";
-import Pagination from "../Common/Pagination";   // ✅ using common one
+import Pagination from "../Common/Pagination";   
 
 export default function RestaurantNotLinkedUsersPage() {
   const dispatch = useDispatch();
@@ -51,7 +51,7 @@ export default function RestaurantNotLinkedUsersPage() {
         noDataMsg="No unlinked restaurant users"
       />
 
-      {/* ✅ Common Pagination */}
+     
       <Pagination
         currentPage={page}
         pageSize={pageSize}

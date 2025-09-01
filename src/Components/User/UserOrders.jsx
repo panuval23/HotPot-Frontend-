@@ -1,9 +1,11 @@
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUserOrders } from "../../store/orderSlice";
+import { useNavigate } from "react-router-dom";
 
 const UserOrders = () => {
   const dispatch = useDispatch();
+  const navigate = useNavigate();
   const { orders, status, error } = useSelector((state) => state.order);
 
   const [selectedOrder, setSelectedOrder] = useState(null);
@@ -103,12 +105,26 @@ const UserOrders = () => {
                 {selectedOrder.items?.map((item) => (
                   <li
                     key={item.menuItemID}
-                    className="list-group-item d-flex justify-content-between"
+                    className="list-group-item d-flex justify-content-between align-items-center"
                   >
                     <span>
                       {item.menuItemName} × {item.quantity}
                     </span>
                     <span>₹{item.subtotal}</span>
+
+                    {selectedOrder.status === "Delivered" && (
+                    <button
+                    className="btn btn-sm btn-outline-primary ms-3"
+                    onClick={() =>
+                      navigate(`/reviews/add/${item.menuItemID}`, {
+                        state: { menuItemName: item.menuItemName }
+                      })
+                    }
+                  >
+                    ➕ Add Review
+                  </button>
+                  
+                    )}
                   </li>
                 ))}
               </ul>

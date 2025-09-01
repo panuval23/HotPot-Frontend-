@@ -1,21 +1,4 @@
-// import { useNavigate } from "react-router-dom";
 
-// export default function RestaurantsPage() {
-//   const navigate = useNavigate();
-//   return (
-//     <section className="admin-section">
-//       <div className="section-head">
-//         <h2>Restaurants</h2>
-//         <button className="btn-primary" onClick={() => navigate("/admin/restaurants/add")}>
-//           + Add Restaurant
-//         </button>
-//       </div>
-//       {/* Table with pagination/edit/delete will go here in Step 2 */}
-//       <div className="placeholder">Restaurants table coming next…</div>
-//     </section>
-//   );
-// }
-// src/Components/Admin/RestaurantsPage.jsx
 import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import {

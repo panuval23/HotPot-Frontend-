@@ -1,0 +1,141 @@
+
+.container {
+    max-width: 1200px;
+  }
+  
+ 
+  .container .d-flex select,
+  .container .d-flex input {
+    padding: 6px 10px;
+    border-radius: 6px;
+    border: 1px solid #ccc;
+  }
+  
+  .container .d-flex input:focus,
+  .container .d-flex select:focus {
+    outline: none;
+    border-color: #28a745;
+    box-shadow: 0 0 3px rgba(40, 167, 69, 0.5);
+  }
+  
+ 
+  .border-end {
+    border-right: 2px solid #f0f0f0 !important;
+    padding-right: 15px;
+  }
+  
+  .border-end h5 {
+    font-weight: 600;
+    margin-bottom: 1rem;
+  }
+  
+  .border-end ul {
+    padding-left: 0;
+  }
+  
+  .border-end ul li {
+    margin-bottom: 10px;
+    list-style: none;
+  }
+  
+  .border-end ul li a {
+    text-decoration: none;
+    color: #333; 
+    font-weight: 500;
+    display: block;
+    padding: 6px 10px;
+    border-radius: 6px;
+    transition: background 0.2s ease, color 0.2s ease;
+  }
+  
+  .border-end ul li a:hover {
+    background: #f8f9fa;
+    color: #28a745; 
+  }
+  
+
+  .card {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+  }
+  
+  .card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+  }
+  
+  .card-title {
+    font-size: 1rem;
+    font-weight: 600;
+  }
+  
+  .card-body p {
+    margin-bottom: 6px;
+  }
+  
+  
+  .badge.bg-success {
+    font-size: 0.75rem;
+    padding: 4px 6px;
+    border-radius: 6px;
+  }
+  
+ 
+  .btn-sm {
+    font-size: 0.85rem;
+    padding: 4px 10px;
+  }
+  
+  .btn-outline-danger,
+  .btn-outline-success {
+    border-radius: 50%;
+    width: 28px;
+    height: 28px;
+    line-height: 1;
+    padding: 0;
+  }
+  
+
+  .position-fixed {
+    border-radius: 12px 12px 0 0;
+    font-size: 0.95rem;
+  }
+  
+  .position-fixed h6 {
+    font-weight: 600;
+  }
+  
+  .modal-content {
+    border-radius: 12px;
+    border: none;
+  }
+  
+  .modal-header {
+    background: #f8f9fa;
+    border-bottom: none;
+    border-radius: 12px 12px 0 0;
+  }
+  
+  .modal-body img {
+    max-height: 250px;
+    object-fit: cover;
+  }
+  
+  .modal-footer {
+    border-top: none;
+  }
+  
+  .modal-footer .btn-success {
+    font-weight: 600;
+  }
+  
+  @media (max-width: 768px) {
+    .border-end {
+      display: none !important;
+    }
+  
+    .position-fixed {
+      font-size: 0.85rem;
+      padding: 8px 12px;
+    }
+  }
+  

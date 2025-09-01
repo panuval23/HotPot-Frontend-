@@ -4,14 +4,13 @@ import axiosInstance from "../../Interceptors/AuthInterceptor";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 export default function CollectionPage() {
-  const { name } = useParams(); // e.g., "Biryani"
+  const { name } = useParams(); 
   const [restaurants, setRestaurants] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     setLoading(true);
 
-    // ✅ FIX: use correct API endpoint
     axiosInstance
       .get(`/User/menu/search?searchTerm=${name}&pageNumber=1&pageSize=20`)
       .then((res) => {
@@ -19,7 +18,7 @@ export default function CollectionPage() {
         const uniqueRestaurants = [];
         const seen = new Set();
 
-        // ✅ extract unique restaurants from menu items
+       
         menuItems.forEach((item) => {
           if (!seen.has(item.restaurantID)) {
             seen.add(item.restaurantID);
@@ -73,7 +72,7 @@ export default function CollectionPage() {
                 }}
               />
 
-              {/* Offer ribbon if available */}
+            
               {rest.offer && (
                 <div
                   style={{

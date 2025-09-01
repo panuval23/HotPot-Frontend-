@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, deleteUser } from "../../store/adminSlice";
 import UserTable from "./UserTable";
-import Pagination from "../Common/Pagination";   // ✅ use your common one
+import Pagination from "../Common/Pagination";   
 
 export default function NormalUsersPage() {
   const dispatch = useDispatch();
@@ -53,7 +53,7 @@ export default function NormalUsersPage() {
         noDataMsg="No normal users"
       />
 
-      {/* ✅ use your common pagination */}
+    
       <Pagination
         currentPage={page}
         pageSize={pageSize}
