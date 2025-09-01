@@ -9,7 +9,7 @@ import {
 } from "../../store/adminSlice";
 import AddRestaurantForm from "./AddRestaurantForm";
 import { useNavigate } from "react-router-dom";
-
+import "./AdminTables.css"; 
 export default function RestaurantsPage() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
@@ -90,10 +90,10 @@ export default function RestaurantsPage() {
           )}
           {restaurants?.map(r => (
             <tr key={r.restaurantID}>
-              <td>{r.restaurantID}</td>
-              <td>{r.restaurantName}</td>
+              <td data-label="ID">{r.restaurantID}</td>
+              <td data-label="Name">{r.restaurantName}</td>
             
-              <td>{r.isActive ? "Active" : "Inactive"}</td>
+              <td data-label="Status">{r.isActive ? "Active" : "Inactive"}</td>
               <td>
                 <button className="btn btn-success btn-sm" onClick={() => handleEdit(r)}>Edit</button>{" "}
                 <button className="btn btn-danger btn-sm" onClick={() => handleDelete(r.restaurantID)}>Delete</button>

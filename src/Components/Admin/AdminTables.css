@@ -1,0 +1,181 @@
+/* Shared Admin Section Layout */
+.admin-section {
+    background: #fff;
+    border-radius: 16px;
+    padding: 1.5rem;
+    margin: 1rem 0;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+  }
+  
+  .admin-section h2 {
+    font-size: 1.5rem;
+    font-weight: 600;
+    margin-bottom: 1rem;
+    color: #ff6a00;
+    border-left: 5px solid #ff6a00;
+    padding-left: 10px;
+  }
+  
+  /* Table Styling */
+  .table {
+    width: 100%;
+    border-collapse: collapse;
+    border-radius: 12px;
+    overflow: hidden;
+    margin-top: 1rem;
+    font-size: 0.95rem;
+  }
+  
+  .table th {
+    background: #ff6a00;
+    color: #fff;
+    padding: 12px;
+    text-align: left;
+    font-weight: 600;
+  }
+  
+  .table td {
+    padding: 12px;
+    border-bottom: 1px solid #eee;
+  }
+  
+  .table tr:nth-child(even) {
+    background: #fafafa;
+  }
+  
+  .table tr:hover {
+    background: #fff3eb;
+    transition: background 0.2s ease;
+  }
+  
+  /* Buttons */
+  .btn {
+    border: none;
+    border-radius: 8px;
+    padding: 6px 14px;
+    font-size: 0.9rem;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .btn-sm {
+    padding: 4px 10px;
+    font-size: 0.85rem;
+  }
+  
+  .btn-success {
+    background: #4caf50;
+    color: #fff;
+  }
+  
+  .btn-success:hover {
+    background: #43a047;
+  }
+  
+  .btn-danger {
+    background: #f44336;
+    color: #fff;
+  }
+  
+  .btn-danger:hover {
+    background: #e53935;
+  }
+  
+  .btn-primary {
+    background: #ff6a00;
+    color: #fff;
+    font-weight: 600;
+  }
+  
+  .btn-primary:hover {
+    background: #e65a00;
+  }
+  
+  .btn-ghost {
+    background: transparent;
+    border: 1px solid #ddd;
+    color: #333;
+  }
+  
+  .btn-ghost:hover {
+    background: #f9f9f9;
+  }
+  
+  /* Pagination */
+  .page-btn {
+    border: 1px solid #ff6a00;
+    background: #fff;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+  }
+  
+  .page-btn:hover {
+    background: #ff6a00;
+    color: #fff;
+  }
+  
+  .page-btn.active {
+    background: #ff6a00;
+    color: #fff;
+    cursor: default;
+  }
+  
+  /* Responsive Tables */
+  @media (max-width: 768px) {
+    .table,
+    .table thead,
+    .table tbody,
+    .table th,
+    .table td,
+    .table tr {
+      display: block;
+      width: 100%;
+    }
+  
+    .table thead {
+      display: none;
+    }
+  
+    .table tr {
+      margin-bottom: 1rem;
+      background: #fff;
+      border-radius: 12px;
+      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.05);
+      padding: 10px;
+    }
+  
+    .table td {
+      padding: 8px 10px;
+      border: none;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+  
+    .table td::before {
+      content: attr(data-label);
+      font-weight: 600;
+      color: #555;
+      flex-shrink: 0;
+      margin-right: 8px;
+    }
+  }
+  
+  /* Tiny screens */
+  @media (max-width: 480px) {
+    .admin-section {
+      padding: 1rem;
+    }
+  
+    .admin-section h2 {
+      font-size: 1.2rem;
+    }
+  
+    .btn {
+      font-size: 0.8rem;
+      padding: 5px 10px;
+    }
+  }
+  

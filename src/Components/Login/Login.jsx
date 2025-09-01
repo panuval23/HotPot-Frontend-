@@ -42,7 +42,7 @@ export default function Login() {
           style: { backgroundColor: "#28a745", color: "#fff" }
         });
 
-        // navigate after short delay
+      
         setTimeout(() => {
           if (role?.toLowerCase() === "admin") {
             navigate("/admin");

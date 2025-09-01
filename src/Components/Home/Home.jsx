@@ -16,7 +16,6 @@ export default function Home() {
             alt="HotPot Logo" 
             className="logo-img"
           />
-           {/* <h2 className="brand-name">HotPot</h2>  */}
         </div>
 
         <h3>Welcome to HotPot</h3>

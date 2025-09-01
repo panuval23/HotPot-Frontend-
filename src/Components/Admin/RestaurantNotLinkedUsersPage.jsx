@@ -2,7 +2,8 @@ import { useEffect, useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, deleteUser } from "../../store/adminSlice";
 import UserTable from "./UserTable";
-import Pagination from "../Common/Pagination";   
+import Pagination from "../Common/Pagination";  
+import "./AdminTables.css"; 
 
 export default function RestaurantNotLinkedUsersPage() {
   const dispatch = useDispatch();
@@ -34,11 +35,11 @@ export default function RestaurantNotLinkedUsersPage() {
         columns={["ID", "Username", "Contact", "Status", "Actions"]}
         renderRow={(u) => (
           <>
-            <td>{u.userID}</td>
-            <td>{u.username}</td>
-            <td>{u.contactNumber}</td>
-            <td>{u.isActive ? "Active" : "Inactive"}</td>
-            <td>
+            <td data-label="ID">{u.userID}</td>
+            <td data-label="Username">{u.username}</td>
+            <td data-label="Contact">{u.contactNumber}</td>
+            <td data-label="Status">{u.isActive ? "Active" : "Inactive"}</td>
+            <td data-label="Actions">
               <button
                 className="btn btn-danger btn-sm"
                 onClick={() => handleDelete(u.userID)}

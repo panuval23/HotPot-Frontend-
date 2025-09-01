@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchUsers, deleteUser } from "../../store/adminSlice";
 import UserTable from "./UserTable";
 import Pagination from "../Common/Pagination";   
+import "./AdminTables.css";
 
 export default function NormalUsersPage() {
   const dispatch = useDispatch();
@@ -32,17 +33,17 @@ export default function NormalUsersPage() {
         columns={["ID", "Username", "Contact", "Addresses", "Status", "Actions"]}
         renderRow={(u) => (
           <>
-            <td>{u.userID}</td>
-            <td>{u.username}</td>
-            <td>{u.contactNumber}</td>
-            <td>
+            <td  data-label="ID">{u.userID}</td>
+            <td data-label="Username">{u.username}</td>
+            <td data-label="Contact">{u.contactNumber}</td>
+            <td data-label="Address">
               {u.addresses?.map((a, i) => (
                 <div key={i}>
                   <strong>{a.addressType}</strong>: {a.addressLine}, {a.city} {a.pincode}
                 </div>
               ))}
             </td>
-            <td>{u.isActive ? "Active" : "Inactive"}</td>
+            <td data-label="Status">{u.isActive ? "Active" : "Inactive"}</td>
             <td>
               <button className="btn btn-danger btn-sm" onClick={() => handleDelete(u.userID)}>
                 Delete

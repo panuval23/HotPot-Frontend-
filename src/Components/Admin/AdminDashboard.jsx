@@ -7,31 +7,25 @@ import { useNavigate } from "react-router-dom";
 export default function AdminDashboard() {
   const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { totalRestaurants, totalUsers, restaurants, users, pageSize } = useSelector(
-    (s) => s.admin
-  );
+  const { totalRestaurants, totalUsers, pageSize } = useSelector((s) => s.admin);
 
   useEffect(() => {
-    
     dispatch(fetchRestaurants({ pageNumber: 1, pageSize }));
     dispatch(fetchUsers({ pageNumber: 1, pageSize }));
   }, [dispatch, pageSize]);
 
-
-
-
   return (
-    <div className="admin-dashboard">
+    <section className="admin-dashboard">
       <h1>Admin Dashboard</h1>
 
       <div className="grid-cards">
-       
         <div className="card">
           <h3>Total Users</h3>
           <p className="metric">{totalUsers ?? "-"}</p>
-          <button onClick={() => navigate("/admin/users/normal")}>View all users</button>
+          <button onClick={() => navigate("/admin/users/normal")}>
+            View all users
+          </button>
         </div>
-       
 
         <div className="card">
           <h3>Total Restaurants</h3>
@@ -40,8 +34,7 @@ export default function AdminDashboard() {
             View all restaurants
           </button>
         </div>
-       
       </div>
-    </div>
+    </section>
   );
 }
